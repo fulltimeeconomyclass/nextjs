@@ -52,7 +52,7 @@ a {
 .app-main {
   display: grid;
   grid-area: app-main-area;
-  padding: 1rem 1rem 0 1rem;
+  /* padding: 1rem 1rem 0 1rem; */
   align-content: start;
 }
 

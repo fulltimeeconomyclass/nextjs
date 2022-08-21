@@ -1,5 +1,13 @@
 .container {
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
+  display: flex;
+  flex-direction: column;
+}
+
+.event {
+  padding: 2rem 0rem;
+  align-self: flex-start;
+  width: 100%;
 }
 
 .main {
@@ -42,13 +50,13 @@
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 2rem;
 }
 
-.title,
+/* .title,
 .description {
   text-align: center;
-}
+} */
 
 .description {
   margin: 4rem 0;
