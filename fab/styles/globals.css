@@ -1,0 +1,111 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+}
+
+.app-body {
+  display: grid;   /* Two column layout spanning 100 percent of viewport. */
+  height: 100vh;
+  grid-template-areas:
+    "app-sidebar-area app-header-area"
+    "app-sidebar-area app-main-area";
+  grid-template-columns: 16rem 1fr;  /* Fix width of left column and let right column span complete width */
+  grid-template-rows: 0rem 1fr;   /* Fix height of top row and let bottom row span complete height */
+}
+
+.app-sidebar {
+  display: grid;
+  grid-area: app-sidebar-area;
+  grid-template-areas: 
+    "app-logo-area"
+    "app-sidenav-area";
+  grid-template-rows: 3.5rem 1fr;
+
+  font-weight: bold;
+  background-color: var(--color-dark2);
+  color: var(--color-white1);
+  padding-bottom: 3rem;
+}
+
+.app-main {
+  display: grid;
+  grid-area: app-main-area;
+  padding: 1rem 1rem 0 1rem;
+  align-content: start;
+}
+
+.app-logo {
+  display: grid;
+  grid-area: app-logo-area;
+  color: var(--color-white);
+  background-color: var(--color-dark1);
+  align-content: center;
+  padding: 0 1rem;
+}
+
+.app-sidenav {
+  display: grid;
+  grid-area: app-sidenav-area;
+  grid-template-areas: ".";
+}
+
+.app-sidebar ul ul a {
+  padding-left: 2rem !important;
+}
+
+/* .app-sidebar {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  transition: 0.1s;
+} */
+
+.app-sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  background-color: rgb(235, 100, 16);
+}
+
+.app-main, .app-sidenav {
+  overflow: auto;
+}
+
+/* let the sidebar be independently scrollable when there is content beyond the viewport */
+.app-main, .app-sidenav {
+  overflow-y: auto;
+}
+
+@media (max-width: 1025px) {
+  .app-sidebar {
+    display: none;
+  }
+  .app-body {
+    grid-template-columns: 0rem 1fr;
+  }
+}
