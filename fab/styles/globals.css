@@ -71,6 +71,12 @@ a {
   grid-template-areas: ".";
 }
 
+.app-sidebar ul {
+  list-style-type: none;
+  padding: 0rem;
+  margin: 0rem;
+}
+
 .app-sidebar ul ul a {
   padding-left: 2rem !important;
 }

@@ -1,10 +1,11 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Layout({ children }) {
     return (
         <div className="app-body">
             <aside className="app-sidebar">
-                <div className="app-logo sticky-top">Фабрика</div>
+                <div className="app-logo sticky-top"><Image src="/LogoFab.png" alt="Fabrika Logo" width={'100vw'} height={'100vh'} /></div>
                 <div className="app-sidenav">
                     <ul className="nav flex-column">
                         <li className="nav-item">
