@@ -3,7 +3,15 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 
-export default function Home() {
+import { getEvents } from '../utils/wordpress'
+import Event from '../components/Event'
+
+export default function Home({ events }) {
+  const jsxEvents = events.map((event) => {
+    const featuredMedia = event['_embedded']['wp:featuredmedia'][0];
+    return <Event event={event} featuredMedia={featuredMedia} key={event.id} />;
+  });
+
   return (
     <div className={styles.container}>
       <Head>
@@ -20,6 +28,11 @@ export default function Home() {
         <p>Опсиание краткое</p>
         <Link href={`event/${0}`}><a>Подробнее</a></Link>
         <hr/>
+      </div>
+
+      <div>
+        <h2>Events from WP</h2>
+        {jsxEvents}
       </div>
 
       {/* <main className={styles.main}>
@@ -77,4 +90,16 @@ export default function Home() {
       </footer>
     </div>
   )
+}
+
+export async function getStaticProps({ params }) {
+  const events = await getEvents();
+  // const media = await getMedia();
+
+  return {
+    props: {
+      events,
+    },
+    revalidate: 10, // In seconds
+  };
 }
