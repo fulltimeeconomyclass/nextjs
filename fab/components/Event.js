@@ -19,6 +19,7 @@ export default function Event({ event, featuredMedia }) {
                 src="/arrow-lg.svg"
                 width={50}
                 height={20}
+                alt={"arrow"}
                 className={styles.arrow_img}
               />
             </a>

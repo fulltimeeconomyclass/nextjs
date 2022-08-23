@@ -40,3 +40,53 @@
 .arrow_img:hover {
     transform: scaleX(0.8);
 }
+
+
+.full_event_container {  
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    grid-template-rows: 0.2fr 0.7fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "full_event_cover full_event_cover"
+      "full_event_content full_event_content";
+}
+
+.full_event_cover {  
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "full_event_cover_img . ."
+        "full_event_cover_img . ."
+        "full_event_cover_img . .";
+    grid-area: full_event_cover;
+
+    background-color: #E78E4E;
+}
+  
+.full_event_content {  
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.5fr 1.2fr 1.1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "full_event_date full_event_date full_event_date"
+        "full_event_title full_event_title full_event_title"
+        "full_event_text full_event_text full_event_text";
+    grid-area: full_event_content;
+
+    padding: 2rem;
+}
+  
+.full_event_date { grid-area: full_event_date; font-size: 2rem; }
+
+.full_event_title { grid-area: full_event_title; font-size: 4rem;}
+
+.full_event_text { grid-area: full_event_text; }
+
+.full_event_cover_img { grid-area: full_event_cover_img; }

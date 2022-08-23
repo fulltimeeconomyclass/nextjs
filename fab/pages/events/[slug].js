@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { getEvent, getSlugs } from '../../utils/wordpress';
+import styles from '../../styles/Event.module.css'
 
 
 export default function EventPage({ event }) {
@@ -12,23 +13,23 @@ export default function EventPage({ event }) {
   const featuredMedia = event['_embedded']['wp:featuredmedia'][0];
 
   return (
-    <div className="">
-          <Image
+    <div className={styles.full_event_container}>
+      <div className={styles.full_event_cover}>
+        <Image
             src={featuredMedia['media_details'].sizes.medium['source_url']}
-            width={288}
-            height={190}
+            width={100}
+            height={100}
             alt={featuredMedia['alt_text']}
-            className="card-img-top"
-          />
-
-      <h1 className="">{event.title.rendered}</h1>
-      <div
-        className=""
-        dangerouslySetInnerHTML={{ __html: event.acm_fields.eventDescription }}
-      ></div>
-      <Link href="/">
-        <a className="">назад на главную</a>
-      </Link>
+            className={styles.full_event_cover_img}
+        />
+      </div>
+      <div className={styles.full_event_content}>
+        <div className={styles.full_event_date}>{event.acm_fields.eventDate.split('-')[2]}.{event.acm_fields.eventDate.split('-')[1]}</div>
+        <div className={styles.full_event_title}>{event.title.rendered}</div>
+        <div className={styles.full_event_text} dangerouslySetInnerHTML={{ __html: event.acm_fields.eventDescription }}></div>
+      </div>
+      
+      {/* <Link href="/"><a className="">назад на главную</a></Link> */}
     </div>
   );
 }
