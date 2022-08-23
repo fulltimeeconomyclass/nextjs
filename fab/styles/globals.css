@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600;800&display=swap');
+
 html,
 body {
   padding: 0;
@@ -31,7 +33,7 @@ a {
   grid-template-areas:
     "app-sidebar-area app-header-area"
     "app-sidebar-area app-main-area";
-  grid-template-columns: 16rem 1fr;  /* Fix width of left column and let right column span complete width */
+  grid-template-columns: 25rem 1fr;  /* Fix width of left column and let right column span complete width */
   grid-template-rows: 0rem 1fr;   /* Fix height of top row and let bottom row span complete height */
 }
 
@@ -40,13 +42,14 @@ a {
   grid-area: app-sidebar-area;
   grid-template-areas: 
     "app-logo-area"
-    "app-sidenav-area";
-  grid-template-rows: 3.5rem 1fr;
+    "app-sidenav-area"
+    "searchbar-area";
+  grid-template-rows: 10rem 1fr;
 
   font-weight: bold;
   background-color: var(--color-dark2);
   color: var(--color-white1);
-  padding-bottom: 3rem;
+  /* padding-bottom: 3rem; */
 }
 
 .app-main {
@@ -59,26 +62,67 @@ a {
 .app-logo {
   display: grid;
   grid-area: app-logo-area;
-  color: var(--color-white);
-  background-color: var(--color-dark1);
-  align-content: center;
-  padding: 0 1rem;
+  align-content: start;
+  padding: 0 0rem;
+  cursor: pointer;
+  padding: 2rem;
 }
 
 .app-sidenav {
   display: grid;
   grid-area: app-sidenav-area;
   grid-template-areas: ".";
+  padding: 2rem;
 }
 
 .app-sidebar ul {
   list-style-type: none;
   padding: 0rem;
   margin: 0rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
 }
 
-.app-sidebar ul ul a {
-  padding-left: 2rem !important;
+
+.app-sidebar ul li {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.app-sidebar ul li:hover {
+  cursor: pointer;
+  color: #3a3633;
+}
+
+.app-sidebar ul li {
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-origin: content-box;
+}
+
+.app-sidebar ul li:nth-child(1):hover {
+  background-image: url('/menu-icons/icon-m.svg'); /* '/menu-icon-machines.svg' */
+}
+
+.app-sidebar ul li:nth-child(2):hover {
+  background-image: url('/menu-icons/icon-c.svg'); /* '/menu-item-icon.svg' */
+}
+
+.app-sidebar ul li:nth-child(3):hover {
+  background-image: url('/menu-icons/icon-p.svg'); /* '/menu-item-icon.svg' */
+}
+
+.app-sidebar ul li:nth-child(4):hover {
+  background-image: url('/menu-icons/icon-c.svg'); /* '/menu-icon-docs.svg' */
+}
+
+.app-sidebar ul li:nth-child(5):hover {
+  background-image: url('/menu-icons/icon-d.svg'); /* '/menu-icon-contacts.svg' */
+}
+
+.app-sidebar ul li:nth-child(6):hover {
+  background-image: url('/menu-icons/icon-l.svg'); /* '/menu-icon-people.svg' */
 }
 
 /* .app-sidebar {
@@ -95,7 +139,8 @@ a {
   position: sticky;
   top: 0;
   z-index: 1020;
-  background-color: rgb(235, 100, 16);
+  /* background-color: rgb(235, 100, 16); */
+  border-right: 1px solid black;
 }
 
 .app-main, .app-sidenav {
@@ -105,6 +150,28 @@ a {
 /* let the sidebar be independently scrollable when there is content beyond the viewport */
 .app-main, .app-sidenav {
   overflow-y: auto;
+}
+
+.app-searchbar { 
+  background-color: #F4F1F1;
+  color: #887C7C;
+  padding: 2rem;
+
+}
+
+.app-searchbar input {
+  border: none;
+  background-color: #F4F1F1;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  margin-left: 0.8rem;
+}
+
+.app-searchbar input:focus {
+  outline: none;
+  color: black;
 }
 
 @media (max-width: 1025px) {

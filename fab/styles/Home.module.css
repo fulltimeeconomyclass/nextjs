@@ -4,12 +4,6 @@
   flex-direction: column;
 }
 
-.event {
-  padding: 2rem 0rem;
-  align-self: flex-start;
-  width: 100%;
-}
-
 .main {
   min-height: 100vh;
   padding: 4rem 0;
@@ -23,7 +17,7 @@
 .footer {
   display: flex;
   flex: 1;
-  padding: 2rem 0;
+  padding: 1.75rem 0;
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
@@ -112,8 +106,8 @@
 }
 
 .logo {
-  height: 1em;
-  margin-left: 0.5rem;
+  /* height: 1em; */
+  margin-left: 0rem;
 }
 
 @media (max-width: 600px) {

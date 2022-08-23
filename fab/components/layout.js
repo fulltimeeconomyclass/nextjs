@@ -5,7 +5,7 @@ export default function Layout({ children }) {
     return (
         <div className="app-body">
             <aside className="app-sidebar">
-                <div className="app-logo sticky-top"><Image src="/LogoFab.png" alt="Fabrika Logo" width={'100vw'} height={'100vh'} /></div>
+                <div className="app-logo sticky-top"><Link href="/"><Image src="/fabrika.svg" alt="Fabrika Logo" width={'100vw'} height={'100vh'} /></Link></div>
                 <div className="app-sidenav">
                     <ul className="nav flex-column">
                         <li className="nav-item">
@@ -39,6 +39,10 @@ export default function Layout({ children }) {
                             </Link>
                         </li>
                     </ul>
+                </div>
+                <div className="app-searchbar">
+                    <Image src="/search-icon.svg" alt="Fabrika Logo" width={18} height={18} />
+                    <input placeholder='Молоток'></input>
                 </div>
             </aside>
             <main className='app-main'>
