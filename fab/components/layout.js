@@ -9,7 +9,7 @@ export default function Layout({ children }) {
                 <div className="app-sidenav">
                     <ul className="nav flex-column">
                         <li className="nav-item">
-                            <Link href="/machines">
+                            <Link href="/machines/machines">
                                 <a className="nav-link">Машины</a>
                             </Link>
                         </li>

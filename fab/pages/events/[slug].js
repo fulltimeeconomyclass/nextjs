@@ -1,35 +1,66 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import Footer from '../../components/Footer'
 import { getEvent, getSlugs } from '../../utils/wordpress';
 import styles from '../../styles/Event.module.css'
 
-
 export default function EventPage({ event }) {
-  // const test = events.map((event) => {
-  //   const featuredMedia = event['_embedded']['wp:featuredmedia'][0];
-  //   return <Event event={event} featuredMedia={featuredMedia} key={event.id} />;
-  // });
-
   const featuredMedia = event['_embedded']['wp:featuredmedia'][0];
 
   return (
     <div className={styles.full_event_container}>
       <div className={styles.full_event_cover}>
         <Image
-            src={featuredMedia['media_details'].sizes.medium['source_url']}
-            width={100}
-            height={100}
-            alt={featuredMedia['alt_text']}
+            src={featuredMedia['media_details'].sizes.large['source_url']}
+            layout={"intrinsic"}
+            width={500}
+            height={300}
+            alt={featuredMedia['cover']}
+            quality='100'
             className={styles.full_event_cover_img}
+            // placeholder={"blur"}
         />
       </div>
       <div className={styles.full_event_content}>
         <div className={styles.full_event_date}>{event.acm_fields.eventDate.split('-')[2]}.{event.acm_fields.eventDate.split('-')[1]}</div>
         <div className={styles.full_event_title}>{event.title.rendered}</div>
+        
+        <div className={styles.full_event_meta}>
+          <table>
+            <tbody>
+            <tr>
+              <td>Локация:</td>
+              <td>Главный вход</td>
+            </tr>
+            <tr>
+              <td>Начало:</td>
+              <td>12:00</td>
+            </tr>
+            <tr>
+              <td>Продолжительность:</td>
+              <td>40 мин</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>  
+        
         <div className={styles.full_event_text} dangerouslySetInnerHTML={{ __html: event.acm_fields.eventDescription }}></div>
+
+        <Link href="/">
+            <a className={styles.arrow_btn}>
+              <div>назад на главную</div>
+              <Image
+                src="/arrow-back-lg.svg"
+                width={50}
+                height={20}
+                alt={"arrow"}
+                className={styles.arrow_img}
+              />
+            </a>
+        </Link>
+
       </div>
-      
-      {/* <Link href="/"><a className="">назад на главную</a></Link> */}
+    {/* <Footer/> */}
     </div>
   );
 }
@@ -47,7 +78,6 @@ export async function getStaticPaths() {
 }
 
 //access the router, get the id, and get the medatada for that post
-
 export async function getStaticProps({ params }) {
   const event = await getEvent(params.slug);
 

@@ -1,4 +1,5 @@
 const BASE_URL = 'http://cc21101-wordpress-boyv0.tw1.ru/wp-json/wp/v2';
+const API_URL = 'http://cc21101-wordpress-boyv0.tw1.ru/graphql';
 
 export async function getEvents() {
   const eventsRes = await fetch(BASE_URL + '/events?_embed');
@@ -32,3 +33,109 @@ export async function getSlugs(type) {
   });
   return elementsIds;
 }
+
+// graphql API
+async function fetchAPI(query = '', { variables }) {
+  const headers = { 'Content-Type': 'application/json' }
+
+  const res = await fetch(API_URL, {
+    headers,
+    method: 'POST',
+    body: JSON.stringify({
+      query,
+      variables,
+    }),
+  })
+
+  const json = await res.json()
+  if (json.errors) {
+    console.error(json.errors)
+    throw new Error('Failed to fetch API')
+  }
+  return json.data
+}
+
+export async function getAllMachines(preview) {
+  const data = await fetchAPI(
+    `
+    query AllMachines {
+      machines {
+        edges {
+          node {
+            id
+            title
+            description
+            photo {
+              databaseId
+              mediaItemUrl
+              altText
+              caption
+              description
+              mediaDetails {
+                height
+                width
+                sizes {
+                  file
+                  fileSize
+                  height
+                  mimeType
+                  name
+                  sourceUrl
+                  width
+                }
+              }
+            }
+            address {
+              node {
+                id
+                title
+              }
+            }
+          }
+        }
+      }
+    }
+    `,
+    {
+      variables: {
+        onlyEnabled: !preview,
+        preview,
+      },
+    }
+  )
+
+  return data?.machines
+}
+
+
+
+// fragment MachineFields on Machine {
+//   title
+//   description
+//   photo {
+//     mediaItemId
+//     mediaItemUrl
+//     altText
+//     caption
+//     description
+//     mediaDetails {
+//       height
+//       width
+//       sizes {
+//         file
+//         fileSize
+//         height
+//         mimeType
+//         name
+//         sourceUrl
+//         width
+//       }
+//     }
+//   }
+//   address {
+//     node {
+//       id
+//       title
+//     }
+//   }
+// }

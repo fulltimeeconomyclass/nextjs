@@ -2,9 +2,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
+import Footer from '../components/Footer'
 
 import { getEvents } from '../utils/wordpress'
 import Event from '../components/Event'
+
 
 export default function Home({ events }) {
   const jsxEvents = events.map((event) => {
@@ -24,18 +26,7 @@ export default function Home({ events }) {
         {jsxEvents}
       </div>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://mipt.ru/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {/* Физтех */}
-          <span className={styles.logo}>
-           <Image src="/hnu.svg" alt="MIPT Logo" width={92} height={36} />
-          </span>
-        </a>
-      </footer>
+      <Footer/>
     </div>
   )
 }
