@@ -1,11 +1,17 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
+
 // import Footer from '../../components/Footer'
 import { getAllMachines } from '../../utils/wordpress';
 // import styles from '../../styles/Machine.module.css'
 
 export default function Machines({ allMachines: {edges}, preview }) {
   const machines = edges;
+
+  useEffect(() => {
+    document.querySelector("#arrow-nav").style.width = "0";
+  }, []);
 
   return (
     <div>

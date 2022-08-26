@@ -4,21 +4,29 @@ import { useState, useEffect } from 'react';
 
 
 export default function Layout({ children }) {
-
     const [menuState, setMenuState] = useState(false);
 
     function handleClick() {
         setMenuState(!menuState);
     }
 
+    // on component load once
+    // useEffect(() => {
+    //         document.querySelector("#arrow-nav").style.width = "0";
+    //         console.log("once")
+    // }, []);
+
     useEffect(() => {
         if (menuState) {
             document.querySelector("#arrow-nav").style.width = "100%";
+            document.querySelector(".app-main").style.overflowY = "hidden";
+            document.querySelector("#arrow-nav").style.height = `${window.innerHeight - document.querySelector(".mobile-header").offsetHeight - 2}px`;
         }
         else {
             document.querySelector("#arrow-nav").style.width = "0";
+            document.querySelector(".app-main").style.overflowY = "auto";
         }
-    });
+    }, [menuState]);
 
 
     return (
@@ -71,21 +79,45 @@ export default function Layout({ children }) {
                 <div className="mobile-nav" onClick={handleClick}>
                         <div>меню</div>
                         <a className="">
-                            <Image
-                                src="/arrow-back-lg.svg"
-                                width={50}
-                                height={10}
-                                alt={"arrow"}
-                                className=""
-                            />
+                            {menuState
+                                ? <Image src="/arrow-lg.svg" width={50} height={10} alt={"arrow"} className="" />
+                                : <Image src="/arrow-back-lg.svg" width={50} height={10} alt={"arrow"} className="" />
+                            }
                         </a>
                 </div>
-                <div id="arrow-nav" class="mobile-sidenav">
-                    {/* <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> */}
-                    <a href="#">About</a>
-                    <a href="#">Services</a>
-                    <a href="#">Clients</a>
-                    <a href="#">Contact</a>
+                <div id="arrow-nav" className="mobile-sidenav">
+                    <ul className="nav flex-column">
+                        <li className="nav-item">
+                            <Link href="/machines/machines">
+                                <a className="nav-link">Машины</a>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link href="/about">
+                                <a className="nav-link">О Фабрике</a>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link href="/map">
+                                <a className="nav-link">Карта</a>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link href="/contact">
+                                <a className="nav-link">Контакты</a>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link href="/docs">
+                                <a className="nav-link">Документы</a>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link href="/team">
+                                <a className="nav-link">Команда</a>
+                            </Link>
+                        </li>
+                    </ul>
                 </div>
             </div>
                 {children}
