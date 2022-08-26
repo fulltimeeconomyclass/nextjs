@@ -143,14 +143,6 @@ a {
   background-image: url('/menu-icons/icon-l.svg'); /* '/menu-icon-people.svg' */
 }
 
-/* .app-sidebar {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-  transition: 0.1s;
-} */
 
 .app-sidebar {
   position: -webkit-sticky;
@@ -192,11 +184,69 @@ a {
   color: black;
 }
 
-@media (max-width: 1025px) {
+.mobile-logo {
+  display: none;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+
+.mobile-sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+
+@media only screen and (min-width: 360px) and (max-width: 768px) {
   .app-sidebar {
     display: none;
   }
   .app-body {
     grid-template-columns: 0rem 1fr;
   }
+
+  .mobile-logo {
+    display: block;
+    cursor: pointer;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .mobile-nav {
+    border-top:1px solid black;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    display: flex;
+    flex-direction: row-reverse;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
 }
+
+/*
+@media only screen and (max-width: 600px) {
+  
+} 
+
+@media only screen and (min-width: 600px) {
+}
+
+@media only screen and (min-width: 768px) {
+  
+}
+@media only screen and (min-width: 992px) {
+  
+}
+@media only screen and (min-width: 1200px) {
+  
+} 
+*/

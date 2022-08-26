@@ -13,9 +13,8 @@ export default function Machines({ allMachines: {edges}, preview }) {
         <div className="">
         {machines.map(({ node }) => (
           <div key={node.id}>
-            <h3>Machine</h3>
-            <p>{node.title}</p>
-            <p>{node.description}</p>
+            <h3>{node.title}</h3>
+            <div dangerouslySetInnerHTML={{ __html: node.description }}></div>
             <Image
               src={node.photo.mediaItemUrl}
               width={500}

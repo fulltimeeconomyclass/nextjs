@@ -71,3 +71,16 @@
     padding: 1rem;
     margin-bottom: 3rem;
 }
+
+@media only screen and (min-width: 360px) and (max-width: 768px) {
+	.row {
+        grid-template-columns: 3fr 4fr;
+        grid-template-rows: 2fr 1fr;
+    }
+    .event_title {
+       font-size: 1.6rem;
+    }
+    .event_date {
+       font-size: 3rem;
+    }
+}
