@@ -1,0 +1,50 @@
+.machine_container {
+    min-width: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.machine_item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border-bottom: 1px solid rgb(239 225 225);
+    padding: 1.5rem;
+}
+
+.machine_item_content {
+    flex-shrink: 3;
+}
+
+.machine_meta table {
+    width: 30vw;
+    border: 1px solid black; 
+    padding: 1rem;
+    margin-bottom: 3rem;
+}
+
+.machine_description {
+    font-size: 0.9rem;
+    padding-right: 1.5rem;
+}
+  
+.machine_cover { 
+    background-color: #f4f1f1; /*#E78E4E;*/
+}
+
+.machine_cover_img {
+    position: relative;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+    .machine_item {
+        flex-wrap: wrap;
+    }
+
+    .machine_meta table {
+        width: 80vw;
+    }
+}
