@@ -16,7 +16,7 @@ export default function MobileNav() {
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link href="/map">
+                    <Link href="/map/map">
                         <a className="nav-link">Карта</a>
                     </Link>
                 </li>
@@ -31,7 +31,7 @@ export default function MobileNav() {
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link href="/team">
+                    <Link href="/team/humans">
                         <a className="nav-link">Команда</a>
                     </Link>
                 </li>

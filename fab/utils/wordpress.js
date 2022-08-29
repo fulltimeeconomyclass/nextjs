@@ -85,6 +85,14 @@ export async function getAllMachines(preview) {
                 }
               }
             }
+            machineType {
+            	edges {
+                node {
+                  id
+                  title
+                }
+              }
+            }
             address {
               node {
                 id
@@ -108,34 +116,98 @@ export async function getAllMachines(preview) {
 }
 
 
+export async function getAllHumans(preview) {
+  const data = await fetchAPI(
+  `
+  query AllHumans {
+    humans {
+      edges {
+        node {
+          id
+          name
+          position
+          description
+          photo {
+            databaseId
+            mediaItemUrl
+            altText
+            caption
+            description
+            mediaDetails {
+              height
+              width
+              sizes {
+                file
+                fileSize
+                height
+                mimeType
+                name
+                sourceUrl
+                width
+              }
+            }
+          }
+          workplace {
+            node {
+              id
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+  `,
+  {
+    variables: {
+      onlyEnabled: !preview,
+      preview,
+    },
+  }
+  )
 
-// fragment MachineFields on Machine {
-//   title
-//   description
-//   photo {
-//     mediaItemId
-//     mediaItemUrl
-//     altText
-//     caption
-//     description
-//     mediaDetails {
-//       height
-//       width
-//       sizes {
-//         file
-//         fileSize
-//         height
-//         mimeType
-//         name
-//         sourceUrl
-//         width
-//       }
-//     }
-//   }
-//   address {
-//     node {
-//       id
-//       title
-//     }
-//   }
-// }
+  return data?.humans
+}
+
+
+export async function getAllAddresses(preview) {
+  const data = await fetchAPI(
+  `
+  query AllAddresses {
+    addresses {
+      edges {
+        node {
+          id
+          name
+          floor
+          machines {
+            edges {
+              node {
+                id
+                title
+              }
+            }
+          }
+          humans {
+            edges {
+              node {
+                id
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  `,
+  {
+    variables: {
+      onlyEnabled: !preview,
+      preview,
+    },
+  }
+  )
+
+  return data?.addresses
+}

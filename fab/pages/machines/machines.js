@@ -1,17 +1,31 @@
 import Link from 'next/link';
 import Head from 'next/head'
 import Image from 'next/image';
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getAllMachines } from '../../utils/wordpress'
 import styles from '../../styles/Machine.module.css'
 
 export default function Machines({ allMachines: {edges}, preview }) {
   const machines = edges;
+  const [filter, setFilter] = useState("");
+  const filter_items = ['2D', '3D', 'Analog', 'Digital'];
 
   useEffect(() => {
     document.querySelector("#arrow-nav").style.width = "0";
     document.querySelector(".app-main").style.overflowY = "auto";
   }, []);
+
+  function search(items) {
+    // return items.filter((item) =>
+    //   item.machineType.edges.includes(filter) && search_parameters.some((parameter) =>
+    //     item[parameter].toString().toLowerCase().includes(query)
+    //   )
+    // );
+    // return items.filter((item) => 
+    //   item.machineType.edges.includes(filter) 
+    // )
+    return items
+  }
 
   return (
     <div className={styles.machine_container}>
@@ -21,7 +35,23 @@ export default function Machines({ allMachines: {edges}, preview }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.machines_list}>
-        {machines.map(({ node }) => (
+        <div className={styles.filtering}>
+          {/* <div>all</div>
+          <div>digital</div>
+          <div>analog</div> */}
+          <div className={styles.select}>
+            <select
+              onChange={(e) => setFilter(e.target.value)}
+              className={styles.custom_select}
+              aria-label="filter machines by type">
+              {/* <option value="">filter by type</option> */}
+              {filter_items.map((item) => (
+                <option value={item}>{item}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+        {search(machines).map(({ node }) => (
           <div key={node.id} className={styles.machine_item}>
             <div className={styles.machine_item_content}>
               <h3>{node.title}</h3>
@@ -30,15 +60,22 @@ export default function Machines({ allMachines: {edges}, preview }) {
                 <table>
                   <tbody>
                   <tr>
-                    <td>Рабочая область:</td>
+                    <td>рабочая область:</td>
                     <td>900x650</td>
                   </tr>
                   <tr>
-                    <td>Тип:</td>
-                    <td>Digital</td>
+                    <td>тип:</td>
+                    <td>
+                      <ul>
+                      {node.machineType.edges
+                        ? node.machineType.edges.map(({ node }) => (<li key={node.id}>{node.title}</li>))
+                        : "None"
+                      }
+                      </ul>
+                    </td>
                   </tr>
                   <tr>
-                    <td>Зона:</td>
+                    <td>зона:</td>
                     <td>{node.address.node.title}</td>
                   </tr>
                   </tbody>
@@ -56,6 +93,7 @@ export default function Machines({ allMachines: {edges}, preview }) {
                 quality='100'
                 className={styles.machine_cover_img}
                 alt={node.photo.altText}
+                loading="lazy"
               />
             </div>
           </div>
