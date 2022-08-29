@@ -7,15 +7,15 @@ import styles from '../../styles/Machine.module.css'
 
 export default function Machines({ allMachines: {edges}, preview }) {
   const machines = edges;
-  const [filter, setFilter] = useState("");
-  const filter_items = ['2D', '3D', 'Analog', 'Digital'];
+  const [filter, setFilter] = useState("All");
+  const filter_items = ['All', '2D', '3D', 'Analog', 'Digital'];
 
   useEffect(() => {
     document.querySelector("#arrow-nav").style.width = "0";
     document.querySelector(".app-main").style.overflowY = "auto";
   }, []);
 
-  function search(items) {
+  //function search(items) {
     // return items.filter((item) =>
     //   item.machineType.edges.includes(filter) && search_parameters.some((parameter) =>
     //     item[parameter].toString().toLowerCase().includes(query)
@@ -24,7 +24,25 @@ export default function Machines({ allMachines: {edges}, preview }) {
     // return items.filter((item) => 
     //   item.machineType.edges.includes(filter) 
     // )
-    return items
+    //return items
+  //}
+
+  function search(items) {
+    //console.log( items.filter((item)=> item.node.machineType.edges.includes("3D")) );
+    if (filter.includes('All')) {
+      return items
+    }
+    let found_items = []
+    for (let item of items) {
+      // found_items.push(item.node.machineType.edges.filter((itm) => itm.node.title.includes("3D")))
+      for (let edge of item.node.machineType.edges) {
+        if (edge.node.title.includes(filter)) {
+          found_items.push(item)
+          break
+        }
+      }
+    }
+    return found_items
   }
 
   return (
@@ -42,11 +60,12 @@ export default function Machines({ allMachines: {edges}, preview }) {
           <div className={styles.select}>
             <select
               onChange={(e) => setFilter(e.target.value)}
+              // onChange={(e) => s(machines)}
               className={styles.custom_select}
               aria-label="filter machines by type">
               {/* <option value="">filter by type</option> */}
               {filter_items.map((item) => (
-                <option value={item}>{item}</option>
+                <option key={item} value={item}>{item}</option>
               ))}
             </select>
           </div>
