@@ -15,33 +15,25 @@ export default function Machines({ allMachines: {edges}, preview }) {
     document.querySelector(".app-main").style.overflowY = "auto";
   }, []);
 
-  //function search(items) {
-    // return items.filter((item) =>
-    //   item.machineType.edges.includes(filter) && search_parameters.some((parameter) =>
-    //     item[parameter].toString().toLowerCase().includes(query)
-    //   )
-    // );
-    // return items.filter((item) => 
-    //   item.machineType.edges.includes(filter) 
-    // )
-    //return items
-  //}
-
   function search(items) {
-    //console.log( items.filter((item)=> item.node.machineType.edges.includes("3D")) );
     if (filter.includes('All')) {
       return items
     }
     let found_items = []
-    for (let item of items) {
-      // found_items.push(item.node.machineType.edges.filter((itm) => itm.node.title.includes("3D")))
-      for (let edge of item.node.machineType.edges) {
-        if (edge.node.title.includes(filter)) {
-          found_items.push(item)
-          break
+    try {
+      for (let item of items) {
+        for (let edge of item.node.machineType.edges) {
+          if (edge.node.title.includes(filter)) {
+            found_items.push(item)
+            break
+          }
         }
       }
     }
+    catch (e) {
+      console.log(e)
+    }
+    
     return found_items
   }
 
@@ -54,16 +46,11 @@ export default function Machines({ allMachines: {edges}, preview }) {
       </Head>
       <div className={styles.machines_list}>
         <div className={styles.filtering}>
-          {/* <div>all</div>
-          <div>digital</div>
-          <div>analog</div> */}
           <div className={styles.select}>
             <select
               onChange={(e) => setFilter(e.target.value)}
-              // onChange={(e) => s(machines)}
               className={styles.custom_select}
               aria-label="filter machines by type">
-              {/* <option value="">filter by type</option> */}
               {filter_items.map((item) => (
                 <option key={item} value={item}>{item}</option>
               ))}

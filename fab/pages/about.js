@@ -23,6 +23,10 @@ export default function About() {
         Idea / project brief.
         Mentor.
         </p>
+
+        <div>
+          FAQ
+        </div>
     </div>
   )
 }

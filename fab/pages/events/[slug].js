@@ -25,7 +25,7 @@ export default function EventPage({ event }) {
         <div className={styles.full_event_date}>{event.acm_fields.eventDate.split('-')[2]}.{event.acm_fields.eventDate.split('-')[1]}</div>
         <div className={styles.full_event_title}>{event.title.rendered}</div>
         
-        <div className="machine-meta">
+        <div className={styles.full_event_meta}>
           <table>
             <tbody>
             <tr>

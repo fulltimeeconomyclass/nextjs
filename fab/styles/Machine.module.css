@@ -55,6 +55,14 @@
     cursor: pointer;
 }
 
+.custom_select {
+    padding: 0.7rem 1.2rem;
+    border-radius: 0px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    outline: none;
+}
+
 @media only screen and (min-width: 320px) and (max-width: 768px) {
     .machine_item {
         flex-wrap: wrap;
