@@ -13,10 +13,16 @@
     flex-wrap: nowrap;
     border-bottom: 1px solid rgb(239 225 225);
     padding: 1.5rem;
+    justify-content: space-between
+}
+
+.machines_list {
+    width: 100%;
 }
 
 .machine_item_content {
-    flex-shrink: 3;
+    /* flex-shrink: 3; */
+    width: 70%;
 }
 
 .machine_meta table {
@@ -27,8 +33,9 @@
 }
 
 .machine_description {
-    font-size: 0.9rem;
+    font-size: 1rem;
     padding-right: 1.5rem;
+    line-height: 1.5rem;
 }
   
 .machine_cover { 
@@ -63,6 +70,17 @@
     outline: none;
 }
 
+.map_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.svg_map {
+    width: 50%;
+    padding: 2rem;
+}
+
 @media only screen and (min-width: 320px) and (max-width: 768px) {
     .machine_item {
         flex-wrap: wrap;
@@ -70,5 +88,14 @@
 
     .machine_meta table {
         width: 80vw;
+    }
+    .machine_item_content {
+        width: 100%;
+    }
+
+    .map_container {
+        /* display: flex;
+        flex-direction: row; */
+        flex-wrap: wrap;
     }
 }

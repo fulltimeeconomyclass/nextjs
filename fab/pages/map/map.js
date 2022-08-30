@@ -57,44 +57,46 @@ export default function Addresses({ allAddresses: {edges}, preview }) {
             </select>
           </div>
         </div>
-        <div className={styles.svg_map}>
-          <SvgMap floor={floor} fill="white" stroke="black" />
-        </div>
-
-        {search(addresses).map(({ node }) => (
-          <div key={node.id} className={styles.machine_item}>
-            <div className={styles.machine_item_content}>
-                <h3>{node.name}</h3>
-
-                <div className={styles.machine_meta}>
-                    <table>
-                    <tbody>
-                    <tr>
-                        <td>этаж:</td>
-                        <td>{node.floor}</td>
-                    </tr>
-                    </tbody>
-                    </table>
-                </div>  
-                <p>Machines in this zone:</p>
-                <ul>
-                    {node.machines.edges 
-                      ? node.machines.edges.map(({ node }) => (<li key={node.id}>{node.title} [{String(node.id).slice(-5, -2)}]</li>))
-                      : "None"
-                    }
-                </ul>
-                <p>Humans in this zone:</p>
-                <ul>
-                    {node.humans.edges 
-                      ? node.humans.edges.map(({ node }) => (<li key={node.id}>{node.name}</li>))
-                      : "None"
-                    }
-                </ul>
-            </div>
-
+        <div className={styles.map_container}>
+          <div className={styles.svg_map}>
+            <SvgMap floor={floor} fill="white" stroke="black" />
           </div>
-        ))}
-        
+          <div className={styles.floor_meta}>
+            {search(addresses).map(({ node }) => (
+              <div key={node.id} className={styles.machine_item}>
+                <div className={styles.machine_item_content}>
+                    <h3>{node.name}</h3>
+
+                    <div className={styles.machine_meta}>
+                        <table>
+                        <tbody>
+                        <tr>
+                            <td>этаж:</td>
+                            <td>{node.floor}</td>
+                        </tr>
+                        </tbody>
+                        </table>
+                    </div>  
+                    <p>Machines in this zone:</p>
+                    <ul>
+                        {node.machines.edges 
+                          ? node.machines.edges.map(({ node }) => (<li key={node.id}>{node.title} [{String(node.id).slice(-5, -2)}]</li>))
+                          : "None"
+                        }
+                    </ul>
+                    <p>Humans in this zone:</p>
+                    <ul>
+                        {node.humans.edges 
+                          ? node.humans.edges.map(({ node }) => (<li key={node.id}>{node.name}</li>))
+                          : "None"
+                        }
+                    </ul>
+                </div>
+
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )

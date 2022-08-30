@@ -4,12 +4,24 @@ import { useState, useEffect } from 'react'
 import Nav from './Nav'
 import MobileNav from './MobileNav'
 
+import { useRouter } from 'next/router'
+
+
 export default function Layout({ children }) {
     const [menuState, setMenuState] = useState(false);
+    const router = useRouter()
 
     function handleClick() {
         setMenuState(!menuState);
     }
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            // pass ?query=event.value
+            // fetch: graphql(where tools.title == event.value)
+            // pass results as [] as props
+            router.push('/tools/results', undefined, { shallow: false })
+        }
+    } 
 
     // on component load once
     // useEffect(() => {
@@ -37,7 +49,7 @@ export default function Layout({ children }) {
                 <Nav />
                 <div className="app-searchbar">
                     <Image src="/search-icon.svg" alt="Fabrika Logo" width={18} height={18} />
-                    <input placeholder='Молоток'></input>
+                    <input placeholder='Молоток' onKeyDown={handleKeyDown}></input>
                 </div>
             </aside>
             
