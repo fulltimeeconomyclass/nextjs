@@ -1,3 +1,5 @@
+import styles from '../../styles/Machine.module.css'
+
 export default function Floor1() {
     function handleClick() {
         console.log('yoo:' );
@@ -11,9 +13,9 @@ export default function Floor1() {
             <rect x="30" y="120" width="122" height="83" fill="#D9D9D9"/>
             <rect x="229" y="367" width="34" height="115" fill="#D9D9D9"/>
             <rect x="189" y="567" width="34" height="115" transform="rotate(-90 189 567)" fill="#D9D9D9"/>
-            <rect x="2" y="2" width="323" height="227" stroke="black" stroke-width="4"/>
-            <rect x="166" y="229" width="159" height="373" stroke="#335F95" stroke-width="4"/>
-            <rect x="325" y="2" width="300" height="600" stroke="#1D855E" stroke-width="4"/>
+            <rect x="2" y="2" width="323" height="227" stroke="black" strokeWidth="4"/>
+            <rect x="166" y="229" width="159" height="373" stroke="#335F95" strokeWidth="4"/>
+            <rect x="325" y="2" width="300" height="600" stroke="#1D855E" strokeWidth="4"/>
             <path d="M155.032 115.92H191.416V120.336H155.032V115.92ZM155.608 150H150.712V82.8H195.64V87.216H155.608V150Z" fill="black"/>
             <path d="M221.712 449V381.8H225.84L273.744 442.952H271.536V381.8H276.432V449H272.4L224.4 387.848H226.608V449H221.712Z" fill="black"/>
             <path d="M447.501 324L424.653 256.8H429.837L451.533 321.024H448.941L471.309 256.8H476.013L498.189 321.024H495.693L517.581 256.8H522.381L499.629 324H494.445L472.941 261.888H474.189L452.685 324H447.501Z" fill="black"/>

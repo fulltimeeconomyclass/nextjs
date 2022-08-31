@@ -9,12 +9,7 @@ export default function Machines({ allMachines: {edges}, preview }) {
   const machines = edges;
   const [filter, setFilter] = useState("All");
   const filter_items = ['All', '2D', '3D', 'Analog', 'Digital'];
-
-  useEffect(() => {
-    document.querySelector("#arrow-nav").style.width = "0";
-    document.querySelector(".app-main").style.overflowY = "auto";
-  }, []);
-
+  
   function search(items) {
     if (filter.includes('All')) {
       return items

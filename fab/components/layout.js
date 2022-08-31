@@ -8,26 +8,17 @@ import { useRouter } from 'next/router'
 
 
 export default function Layout({ children }) {
-    const [menuState, setMenuState] = useState(false);
+    const [menuState, setMenuState] = useState(false)
     const router = useRouter()
 
     function handleClick() {
-        setMenuState(!menuState);
+        setMenuState(!menuState)
     }
-    const handleKeyDown = (event) => {
-        if (event.key === 'Enter') {
-            // pass ?query=event.value
-            // fetch: graphql(where tools.title == event.value)
-            // pass results as [] as props
-            router.push('/tools/results', undefined, { shallow: false })
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            router.push({pathname: '/tools/search', query: { tool: e.target.value} },  undefined, { shallow: false })
         }
     } 
-
-    // on component load once
-    // useEffect(() => {
-    //         document.querySelector("#arrow-nav").style.width = "0";
-    //         console.log("once")
-    // }, []);
 
     useEffect(() => {
         if (menuState) {
@@ -41,11 +32,28 @@ export default function Layout({ children }) {
         }
     }, [menuState]);
 
+    useEffect(() => {
+        const handleRouteChange = (url, { shallow }) => {
+            setMenuState(false)
+        }
+        router.events.on('routeChangeStart', handleRouteChange)
+
+        // If the component is unmounted, unsubscribe
+        // from the event with the `off` method:
+        return () => {
+            router.events.off('routeChangeStart', handleRouteChange)
+        }
+    }, [])
+
 
     return (
         <div className="app-body">
             <aside className="app-sidebar">
-                <div className="app-logo sticky-top"><Link href="/"><Image src="/fabrika.svg" alt="Fabrika Logo" width={'100vw'} height={'100vh'} /></Link></div>
+                <div className="app-logo sticky-top">
+                    <Link href="/">
+                        <Image src="/fabrika.svg" alt="Fabrika Logo" width={'100vw'} height={'100vh'} />
+                    </Link>
+                </div>
                 <Nav />
                 <div className="app-searchbar">
                     <Image src="/search-icon.svg" alt="Fabrika Logo" width={18} height={18} />
@@ -60,8 +68,8 @@ export default function Layout({ children }) {
                         <div>меню</div>
                         <a className="">
                             {menuState
-                                ? <Image src="/arrow-lg.svg" width={50} height={10} alt={"arrow"} className="" />
-                                : <Image src="/arrow-back-lg.svg" width={50} height={10} alt={"arrow"} className="" />
+                                ? <Image src="/arrow-lg.svg" width={50} height={10} alt={"arrow"} />
+                                : <Image src="/arrow-back-lg.svg" width={50} height={10} alt={"arrow"} />
                             }
                         </a>
                 </div>

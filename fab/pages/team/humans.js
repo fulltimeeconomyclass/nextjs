@@ -10,11 +10,6 @@ export default function Humans({ allHumans: {edges}, preview }) {
   const [filter, setFilter] = useState("All");
   const filter_items = ['All', 'F', 'M', 'N', 'P', 'W'];
 
-  useEffect(() => {
-    document.querySelector("#arrow-nav").style.width = "0";
-    document.querySelector(".app-main").style.overflowY = "auto";
-  }, []);
-
   function search(items) {
     if (filter.includes('All')) {
       return items

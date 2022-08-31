@@ -29,32 +29,5 @@ export default function Event({ event, featuredMedia }) {
           <div>{event.title.rendered}</div>
         </div>
     </div>
-
-    // <div className={styles.row}>
-    //   <Link href={`/events/${event.slug}`}>
-    //     <a>
-    //       <Image
-    //         src={featuredMedia['media_details'].sizes.medium['source_url']}
-    //         width={288}
-    //         height={190}
-    //         alt={featuredMedia['alt_text']}
-    //         className="card-img-top"
-    //       />
-    //     </a>
-    //   </Link>
-    //   <div className="card-body">
-    //     <h5 className="card-title">{event.title.rendered}</h5>
-    //     <div
-    //       className="card-text"
-    //       dangerouslySetInnerHTML={{ __html: event.acm_fields.eventDesciption }}
-    //     ></div>
-    //     <p className="card-text">
-    //       <small className="text-muted">{event.acm_fields.eventDate}</small>
-    //     </p>
-    //     <Link href={`/events/${event.slug}`}>
-    //       <a className="btn btn-primary">See more</a>
-    //     </Link>
-    //   </div>
-    // </div>
   );
 }

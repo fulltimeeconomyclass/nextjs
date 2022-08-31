@@ -2,9 +2,11 @@ import Floor1 from './Floor1'
 import Floor2 from './Floor2'
 import Floor3 from './Floor3'
 
+import styles from '../../styles/Machine.module.css'
+
 export default function SvgMap({floor, fill, stroke}) {
     return (
-        <div>
+        <div className={styles.svg_container}>
             {(() => {
                 switch (floor) {
                     case "1":

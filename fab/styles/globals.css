@@ -83,7 +83,7 @@ a {
   align-content: start;
   padding: 0 0rem;
   cursor: pointer;
-  padding: 2rem;
+  padding: 0.1rem 2rem;
 }
 
 .app-sidenav {

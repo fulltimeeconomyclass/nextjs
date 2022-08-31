@@ -1,3 +1,6 @@
+import { request } from 'graphql-request'
+import useSWR from 'swr'
+
 const BASE_URL = 'http://cc21101-wordpress-boyv0.tw1.ru/wp-json/wp/v2';
 const API_URL = 'http://cc21101-wordpress-boyv0.tw1.ru/graphql';
 
@@ -169,7 +172,6 @@ export async function getAllHumans(preview) {
   return data?.humans
 }
 
-
 export async function getAllAddresses(preview) {
   const data = await fetchAPI(
   `
@@ -210,4 +212,74 @@ export async function getAllAddresses(preview) {
   )
 
   return data?.addresses
+}
+
+
+export async function getAllTools(preview) {
+  const data = await fetchAPI(
+  `
+  query AllTools {
+    tools {
+      edges {
+        node {
+          title
+          code
+          description
+          quantity
+          toolAddress {
+            node {
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+  `,
+  {
+    variables: {
+      onlyEnabled: !preview,
+      preview,
+    },
+  }
+  )
+
+  return data?.tools
+}
+
+export async function getSomeTools(tool_list) {
+  const fetcher = query => request(API_URL, query, {in: tool_list}).then((data) => console.log(data))
+
+  const { data, error } = useSWR(
+    `
+    query AllTools($in: [ID] = "") {
+      tools(where: {in: $in}) {
+        edges {
+          node {
+            databaseId
+            id
+            title
+            quantity
+            code
+            description
+            photo {
+              databaseId
+              mediaItemUrl
+              altText
+              caption
+            }
+            toolAddress {
+              node {
+                title
+              }
+            }
+          }
+        }
+      }
+    } 
+    `,
+    fetcher
+  )
+
+  return data
 }
