@@ -43,7 +43,7 @@ export default function Layout({ children }) {
         return () => {
             router.events.off('routeChangeStart', handleRouteChange)
         }
-    }, [])
+    }, [router.events])
 
 
     return (

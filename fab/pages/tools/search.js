@@ -1,44 +1,85 @@
 import Head from 'next/head'
+import Image from 'next/image';
 import { useRouter } from 'next/router'
-import { getAllTools, getSomeTools } from '../../utils/wordpress'
+import { getAllTools } from '../../utils/wordpress'
 import { useEffect, useState } from 'react'
-
+import { request } from 'graphql-request'
+import useSWR from 'swr'
 import styles from '../../styles/Machine.module.css'
 
-export default function Results({ allTools: {edges}, preview }) {
+
+export default function Search({ allTools: {edges}, preview }) {
   const router = useRouter()
   const tools = edges
 
-  const tool_list = ["58", "61"]
-  const found_tools = getSomeTools(tool_list)
+  //const [toolIds, setIds] = useState([])
 
-  console.log(found_tools)
+  const toolIds = search(tools, router.query.tool)
+  //setIds(search(tools, router.query.tool)
 
-  // const fetcher = (...args) => fetch(...args).then((res) => res.json())
-  // const [filter, setFilter] = useState("");
-
-  // state for loading
-  // state for storing keyword?
-  // useSWR for graphql with params
-
-  // const { data, error } = useSWR('/api/profile-data', fetcher)
-
-  // if (error) return <div>Failed to load</div>
-  // if (!data) return <div>Loading...</div>
-
-  // return (
-  //   <div>
-  //     <h1>{data.name}</h1>
-  //     <p>{data.bio}</p>
-  //   </div>
-  // )
-
+  const fetcher = query => request('http://cc21101-wordpress-boyv0.tw1.ru/graphql', query, {in: toolIds}).then((data) => data)
+  
+  const { data, error } = useSWR(
+    `
+    query SomeTools($in: [ID]) {
+      tools(where: {in: $in}) {
+        edges {
+          node {
+            databaseId
+            id
+            title
+            quantity
+            code
+            description
+            photo {
+              databaseId
+              mediaItemUrl
+              altText
+              caption
+            }
+            toolAddress {
+              node {
+                title
+              }
+            }
+          }
+        }
+      }
+    } 
+    `,
+    fetcher
+  )
+  
+  const some_tools = data?.tools.edges
+  console.log(some_tools)
 
   function search(tools, keyword) {
-    return tools.filter(
-      (item) => item.node.title.toString().toLowerCase().includes(keyword)
-    );
+    let some_tools = []
+    for (let tool of tools) {
+      if (tool.node.title.toString().toLowerCase().includes(keyword)) {
+        some_tools.push(tool.node.databaseId.toString())
+      }
+    }
+    return (some_tools.length > 0) ? some_tools : "Й"
   }
+
+  // useEffect(() => {
+  //     router.events.on('routeChangeStart', () => setTools(!toolState) )
+  // }, [router.events])
+
+  // useEffect(()=>{
+  //   if(!router.isReady) return;
+  //   router.replace({
+  //         pathname: router.pathname,
+  //         query: router.query
+  //     })
+
+  // }, [router, router.isReady, router.query ]);
+
+
+  //if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+  if (some_tools.length < 1) return <div>ничего не найдено</div>
 
   return (
     <div className={styles.machine_container}>
@@ -48,7 +89,9 @@ export default function Results({ allTools: {edges}, preview }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.machines_list}>
-        {search(tools, router.query.tool).map(({ node }) => (
+        {/* <button onClick={() => { setIds(tools, router.query.tool) } }>Search</button> */}
+
+        {some_tools.map(({ node }) => (
           <div key={node.id} className={styles.machine_item}>
             <div className={styles.machine_item_content}>
               <h3>{node.title}</h3>
@@ -71,6 +114,16 @@ export default function Results({ allTools: {edges}, preview }) {
               <div className={styles.machine_description} dangerouslySetInnerHTML={{ __html: node.description }}></div>
             </div>
             <div className={styles.machine_cover}>
+              <Image
+                src={node.photo.mediaItemUrl}
+                layout={"intrinsic"}
+                width={500}
+                height={300}
+                quality='100'
+                className={styles.machine_cover_img}
+                alt={node.photo.altText}
+                loading="lazy"
+              />
             </div>
           </div>
         ))}
@@ -91,11 +144,3 @@ export async function getStaticProps({ preview = false }) {
     revalidate: 10, // In seconds
   };
 }
-
-
-
-
-
-// {
-// 	"in": ["58", "61"]
-// }
