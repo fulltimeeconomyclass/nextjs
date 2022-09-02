@@ -25,7 +25,7 @@ export default function About({ allFaqs: {edges}, preview }) {
           </div>
           <div className={styles.faq_list}>
             {faqs.map(({ node }) => (
-              <AccordionItem faq={node} />
+              <AccordionItem faq={node} key={node.id} />
             ))}
           </div>
         </div>
