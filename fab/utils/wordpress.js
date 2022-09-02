@@ -212,6 +212,33 @@ export async function getAllAddresses(preview) {
 }
 
 
+export async function getAllFaqs(preview) {
+  const data = await fetchAPI(
+  `
+  query AllFaqs {
+    faqs {
+      edges {
+        node {
+          id
+          question
+          answer
+        }
+      }
+    }
+  }
+  `,
+  {
+    variables: {
+      onlyEnabled: !preview,
+      preview,
+    },
+  }
+  )
+
+  return data?.faqs
+}
+
+
 export async function getAllTools(preview) {
   const data = await fetchAPI(
   `
