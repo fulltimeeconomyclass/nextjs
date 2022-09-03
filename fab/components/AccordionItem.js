@@ -11,7 +11,7 @@ export default function AccordionItem(props) {
                 <div className={`${styles.faq_icon} ${toggle ? styles.is_active : ''}`}></div>
             </div>
             <div className={`${styles.faq_answer} ${toggle ? styles.is_active : ''}`}>
-                <p dangerouslySetInnerHTML={{ __html: props.faq.answer }}></p>
+                <div dangerouslySetInnerHTML={{ __html: props.faq.answer }}></div>
             </div>
         </div>
     )

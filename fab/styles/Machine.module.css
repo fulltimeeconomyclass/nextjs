@@ -148,8 +148,8 @@
     position: absolute;
     content: "";
     width: 50%;
-    height: 2px;
-    background-color: #72a98f;
+    height: 1px;
+    background-color: #000000;
     transition: 500ms ease;
 }
 
@@ -164,6 +164,14 @@
 .faq_icon.is_active:after {
     transform: rotate(360deg);
     transition-delay: 0.08s;
+}
+
+.contacts_text {
+    margin-bottom: 2rem;
+}
+
+.contacts_title {
+    margin-bottom: 1rem;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 768px) {
