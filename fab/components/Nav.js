@@ -35,6 +35,11 @@ export default function Nav() {
                         <a className="nav-link">Команда</a>
                     </Link>
                 </li>
+                <li className="nav-item">
+                    <Link href="/tools-search">
+                        <a className="nav-link">Tool search</a>
+                    </Link>
+                </li>
             </ul>
         </div>
     )

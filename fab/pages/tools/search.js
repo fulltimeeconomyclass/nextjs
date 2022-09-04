@@ -12,8 +12,6 @@ export default function Search({ allTools: {edges}, preview }) {
   const router = useRouter()
   const tools = edges
 
-  //const [toolIds, setIds] = useState([])
-
   const toolIds = search(tools, router.query.tool)
   //setIds(search(tools, router.query.tool)
 
@@ -63,24 +61,6 @@ export default function Search({ allTools: {edges}, preview }) {
     return (some_tools.length > 0) ? some_tools : "Й"
   }
 
-  // useEffect(() => {
-  //     router.events.on('routeChangeStart', () => setTools(!toolState) )
-  // }, [router.events])
-
-  // useEffect(()=>{
-  //   if(!router.isReady) return;
-  //   router.replace({
-  //         pathname: router.pathname,
-  //         query: router.query
-  //     })
-
-  // }, [router, router.isReady, router.query ]);
-
-
-  //if (error) return <div>Failed to load</div>
-  if (!data) return <div>Loading...</div>
-  if (some_tools.length < 1) return <div>ничего не найдено</div>
-
   return (
     <div className={styles.machine_container}>
       <Head>
@@ -89,8 +69,6 @@ export default function Search({ allTools: {edges}, preview }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.machines_list}>
-        {/* <button onClick={() => { setIds(tools, router.query.tool) } }>Search</button> */}
-
         {some_tools.map(({ node }) => (
           <div key={node.id} className={styles.machine_item}>
             <div className={styles.machine_item_content}>
