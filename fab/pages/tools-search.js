@@ -3,14 +3,15 @@ import useDebounce from "../utils/useDebounce"
 import searchTools from "../utils/searchTools"
 import ToolsSearchResult from "../components/ToolsSearchResult";
 import { useState } from 'react'
+import { getAllTools } from '../utils/wordpress'
 
-export default function ToolsSearch() {
+export default function ToolsSearch({ allTools: {edges}, preview }) {
   const [searchValue, setSearchValue] = useState("");
   const debounedSearchValue = useDebounce(searchValue, 300);
 
   const { isLoading, isError, isSuccess, data } = useQuery(
     ["searchTools", debounedSearchValue],
-    () => searchTools(debounedSearchValue),
+    () => searchTools(edges, debounedSearchValue),
     {
       enabled: debounedSearchValue.length > 0
     }
@@ -43,4 +44,16 @@ export default function ToolsSearch() {
       {renderResult()}
     </div>
   );
+}
+
+export async function getStaticProps({ preview = false }) {
+  const allTools = await getAllTools();  
+
+  return {
+    props: {
+      allTools,
+      preview,
+    },
+    revalidate: 10, // In seconds
+  };
 }

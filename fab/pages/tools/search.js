@@ -2,7 +2,6 @@ import Head from 'next/head'
 import Image from 'next/image';
 import { useRouter } from 'next/router'
 import { getAllTools } from '../../utils/wordpress'
-import { useEffect, useState } from 'react'
 import { request } from 'graphql-request'
 import useSWR from 'swr'
 import styles from '../../styles/Machine.module.css'
