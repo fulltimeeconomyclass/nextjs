@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useQuery, QueryClient, dehydrate } from "react-query";
+import { request } from 'graphql-request'
 
 const ToolsSearchResult = ({ tools }) => {
   return tools.length > 0 ? (
@@ -21,13 +22,37 @@ export default ToolsSearchResult;
 
 
 
-// 1. graphql [ids]
-// 2. 
+// export default function ToolsSearchResult({ toolsIds })  {
+// const query = `
+//   query SomeTools($in: [ID]) {
+//     tools(where: {in: $in}) {
+//       edges {
+//         node {
+//           databaseId
+//           id
+//           title
+//           quantity
+//           code
+//           description
+//           photo {
+//             databaseId
+//             mediaItemUrl
+//             altText
+//             caption
+//           }
+//           toolAddress {
+//             node {
+//               title
+//             }
+//           }
+//         }
+//       }
+//     }
+//   } 
+//`
+//   const fetchTools = (query, toolIds) => request('http://cc21101-wordpress-boyv0.tw1.ru/graphql', query, {in: toolIds}).then((data) => data)
 
-// export default function ToolsSearchResult({ tools })  {
-//   const fetchTool = (id) => axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/`).then(({ data }) => data);
-
-//   return tools.length > 0 ? (
+//   return toolIds.length > 0 ? (
 //     <div className="search-grid">
 //       yo
 //     </div>

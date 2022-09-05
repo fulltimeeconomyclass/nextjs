@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useQuery, QueryClient, dehydrate } from "react-query";
-import { useRouter } from "next/router";
+import { useRouter } from "next/router"
 import ToolCard from "../../components/ToolCard";
 
 const fetchTool = (id) =>
@@ -25,11 +25,11 @@ export default function Tool() {
     return (
       <div className="container">
         <ToolCard
-          name={tool.name}
-          image={tool.sprites?.other?.["official-artwork"]?.front_default}
-          weight={tool.weight}
-          xp={tool.base_experience}
-          abilities={tool.abilities?.map((item) => item.ability.name)}
+          name={tool.title}
+          image={tool.photo.mediaItemUrl}
+          quantity={tool.quantity}
+          code={tool.code}
+          description={tool.description}
         />
       </div>
     );
