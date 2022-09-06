@@ -1,20 +1,47 @@
-import axios from "axios";
-import { useQuery, QueryClient, dehydrate } from "react-query";
+import { useQuery, QueryClient, dehydrate } from "react-query"
 import { useRouter } from "next/router"
-import ToolCard from "../../components/ToolCard";
+import ToolCard from "../../components/ToolCard"
+import { request } from 'graphql-request'
 
-const fetchTool = (id) =>
-  axios
-    .get(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-    .then(({ data }) => data);
+
+const fetchToolgQL = (id) => {
+  const query = `
+  query GetTool($id: Int) {
+    tools(where: {id: $id}) {
+      edges {
+        node {
+          databaseId
+          id
+          title
+          quantity
+          code
+          description
+          photo {
+            databaseId
+            mediaItemUrl
+            altText
+            caption
+          }
+          toolAddress {
+            node {
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+  `
+  return request('http://cc21101-wordpress-boyv0.tw1.ru/graphql', query, {id: parseInt(id)}).then((data) => data)
+}
 
 export default function Tool() {
   const router = useRouter();
   const toolID = typeof router.query?.id === "string" ? router.query.id : "";
 
-  const { isSuccess, data: tool, isLoading, isError } = useQuery(
+  const { isSuccess, data, isLoading, isError } = useQuery(
     ["getTool", toolID],
-    () => fetchTool(toolID),
+    () => fetchToolgQL(toolID),
     {
       enabled: toolID.length > 0,
       staleTime: Infinity
@@ -25,11 +52,12 @@ export default function Tool() {
     return (
       <div className="container">
         <ToolCard
-          name={tool.title}
-          image={tool.photo.mediaItemUrl}
-          quantity={tool.quantity}
-          code={tool.code}
-          description={tool.description}
+          name={data.tools.edges[0].node.title} 
+          image={data.tools.edges[0].node.photo.mediaItemUrl}
+          quantity={data.tools.edges[0].node.quantity}
+          code={data.tools.edges[0].node.code}
+          description={data.tools.edges[0].node.description}
+          address={data.tools.edges[0].node.toolAddress.node.title}
         />
       </div>
     );
@@ -57,7 +85,7 @@ export const getStaticProps = async (context) => {
   const id = context.params?.id
   const queryClient = new QueryClient()
 
-  await queryClient.prefetchQuery(["getTool", id], () => fetchTool(id));
+  await queryClient.prefetchQuery(["getTool", id], () => fetchToolgQL(id));
 
   return {
     props: {

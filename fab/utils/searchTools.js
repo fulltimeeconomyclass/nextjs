@@ -6,7 +6,8 @@ export default function searchTools(tools, query) {
     let some_tools = []
     for (let tool of tools) {
       if (tool.node.title.toString().toLowerCase().includes(keyword)) {
-        some_tools.push(tool.node.databaseId.toString())
+        some_tools.push(tool.node)
+        //some_tools.push(tool.node.databaseId.toString())
         //some_tools.push(tool.node.title.toString())
       }
     }

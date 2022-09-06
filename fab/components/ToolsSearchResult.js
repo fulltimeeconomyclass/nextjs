@@ -6,11 +6,14 @@ const ToolsSearchResult = ({ tools }) => {
   return tools.length > 0 ? (
     <div className="search-grid">
       {tools.map((tool) => (
-        <Link href={`/tools/${tool}`} key={tool}>
-          <a>
-            <div className="tool-card">{tool}</div>
-          </a>
-        </Link>
+        <div key={tool.databaseId}>
+          <div>{tool.title} | {tool.description} | {tool.quantity} | {tool.code} | {tool.toolAddress.node.title}</div>
+          <Link href={`/tools/${tool.databaseId}`} key={tool.databaseId}>
+            <a>
+              <div className="tool-card">{tool.title}</div>
+            </a>
+          </Link>
+        </div>
       ))}
     </div>
   ) : (
@@ -19,7 +22,6 @@ const ToolsSearchResult = ({ tools }) => {
 };
 
 export default ToolsSearchResult;
-
 
 
 // export default function ToolsSearchResult({ toolsIds })  {
