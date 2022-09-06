@@ -35,6 +35,11 @@ export default function MobileNav() {
                         <a className="nav-link">Команда</a>
                     </Link>
                 </li>
+                <li className="nav-item">
+                    <Link href="/tools-search">
+                        <a className="nav-link">Поиск инструмента</a>
+                    </Link>
+                </li>
             </ul>
         </div>
     )

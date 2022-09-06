@@ -251,6 +251,10 @@ export async function getAllTools(preview) {
           code
           description
           quantity
+          photo {
+            mediaItemUrl
+            altText
+          }
           toolAddress {
             node {
               title

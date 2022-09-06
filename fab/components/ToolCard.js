@@ -9,19 +9,19 @@ const ToolCard = ({
     address
 }) => {
     return (
-      <div className="pokemon-card-large">
+      <div className="">
         <h2>{name}</h2>
         <Image src={image} alt={name} width={"100px"} height={"100px"}/>
-        <div className="card-section">
-          <div className="card-section-content">{quantity}</div>
+        <div className="">
+          <div className="">{quantity}</div>
         </div>
-        <div className="card-section">
-          <div className="card-section-content">{code}</div>
+        <div className="">
+          <div className="">{code}</div>
         </div>
-        <div className="card-section">
+        <div className="">
           <div>{description}</div>
         </div>
-        <div className="card-section">
+        <div className="">
           <div>{address}</div>
         </div>
       </div>

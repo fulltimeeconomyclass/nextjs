@@ -55,10 +55,10 @@ export default function Layout({ children }) {
                     </Link>
                 </div>
                 <Nav />
-                <div className="app-searchbar">
+                {/* <div className="app-searchbar">
                     <Image src="/search-icon.svg" alt="Fabrika Logo" width={18} height={18} />
                     <input placeholder='Молоток' onKeyDown={handleKeyDown}></input>
-                </div>
+                </div> */}
             </aside>
             
             <main className='app-main'>

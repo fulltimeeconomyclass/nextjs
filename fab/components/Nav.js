@@ -37,7 +37,7 @@ export default function Nav() {
                 </li>
                 <li className="nav-item">
                     <Link href="/tools-search">
-                        <a className="nav-link">Tool search</a>
+                        <a className="nav-link">Поиск инструмента</a>
                     </Link>
                 </li>
             </ul>

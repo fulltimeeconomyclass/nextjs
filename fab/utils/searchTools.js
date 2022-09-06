@@ -1,4 +1,4 @@
-import { ALL_TOOLS } from "../constants/allTools";
+// import { ALL_TOOLS } from "../constants/allTools";
 
 
 export default function searchTools(tools, query) {

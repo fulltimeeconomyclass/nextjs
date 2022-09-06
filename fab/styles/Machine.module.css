@@ -21,7 +21,6 @@
 }
 
 .machine_item_content {
-    /* flex-shrink: 3; */
     width: 70%;
 }
 
@@ -37,9 +36,18 @@
     padding-right: 1.5rem;
     line-height: 1.5rem;
 }
+
+.item_code {
+    font-weight: 400;
+    color: rgb(77, 76, 74);
+    background-color: #ececec;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+}
   
 .machine_cover { 
-    background-color: #f4f1f1; /*#E78E4E;*/
+    background-color: #ffffff; /*#E78E4E;*/
 }
 
 .machine_cover_img {
@@ -173,6 +181,7 @@
 .contacts_title {
     margin-bottom: 1rem;
 }
+
 
 @media only screen and (min-width: 320px) and (max-width: 768px) {
     .machine_item {

@@ -2,12 +2,14 @@ import { useQuery } from "react-query"
 import useDebounce from "../utils/useDebounce"
 import searchTools from "../utils/searchTools"
 import ToolsSearchResult from "../components/ToolsSearchResult";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { getAllTools } from '../utils/wordpress'
+import Image from 'next/image'
 
 export default function ToolsSearch({ allTools: {edges}, preview }) {
-  const [searchValue, setSearchValue] = useState("");
-  const debounedSearchValue = useDebounce(searchValue, 300);
+  const [searchValue, setSearchValue] = useState("")
+
+  const debounedSearchValue = useDebounce(searchValue, 300)
 
   const { isLoading, isError, isSuccess, data } = useQuery(
     ["searchTools", debounedSearchValue],
@@ -19,11 +21,11 @@ export default function ToolsSearch({ allTools: {edges}, preview }) {
 
   const renderResult = () => {
     if (isLoading) {
-      return <div className="search-message"> Loading... </div>;
+      return <div className="none-container"> Загрузка... </div>;
     }
 
     if (isError) {
-      return <div className="search-message"> Something went wrong </div>;
+      return <div className="none-container"> Что-то пошло не так :( </div>;
     }
 
     if (isSuccess) {
@@ -33,14 +35,18 @@ export default function ToolsSearch({ allTools: {edges}, preview }) {
     return <></>;
   };
 
+  
   return (
-    <div className="home">
-      <h1>Search Tool</h1>
-      <input
-        type="text"
-        onChange={({ target: { value } }) => setSearchValue(value)}
-        value={searchValue}
-      />
+    <div className="">
+      <div className="app-searchbar">
+        <Image src="/search-icon.svg" alt="Fabrika Logo" width={18} height={18} />
+        <input
+          placeholder="молоток"
+          type="text"
+          onChange={({ target: { value } }) => setSearchValue(value)}
+          value={searchValue}
+        />
+      </div>
       {renderResult()}
     </div>
   );

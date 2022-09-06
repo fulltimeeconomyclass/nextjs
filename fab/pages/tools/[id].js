@@ -1,7 +1,7 @@
 import { useQuery, QueryClient, dehydrate } from "react-query"
 import { useRouter } from "next/router"
-import ToolCard from "../../components/ToolCard"
 import { request } from 'graphql-request'
+import ToolCard from "../../components/ToolCard"
 
 
 const fetchToolgQL = (id) => {
