@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useState } from 'react'
-import { getAllAddresses } from '../../utils/wordpress'
+import { getAllAddresses } from '../../utils/data'
 import styles from '../../styles/Machine.module.css'
 
 import SvgMap from './svgMap'
