@@ -2,13 +2,13 @@ import Link from 'next/link';
 import Head from 'next/head'
 import Image from 'next/image';
 import { useEffect, useState } from 'react'
-import { getAllHumans } from '../../utils/wordpress'
+import { getAllHumans } from '../../utils/data'
 import styles from '../../styles/Machine.module.css'
 
 export default function Humans({ allHumans: {edges}, preview }) {
   const humans = edges;
   const [filter, setFilter] = useState("All");
-  const filter_items = ['All', 'F', 'M', 'N', 'P', 'W'];
+  const filter_items = ['All', 'F', 'M', 'N', 'P', 'W', 'R'];
 
   function search(items) {
     if (filter.includes('All')) {

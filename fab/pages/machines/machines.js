@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Head from 'next/head'
 import Image from 'next/image';
-import { useEffect, useState } from 'react'
-import { getAllMachines } from '../../utils/wordpress'
+import { useState } from 'react'
+import { getAllMachines } from '../../utils/data'
 import styles from '../../styles/Machine.module.css'
 
 export default function Machines({ allMachines: {edges}, preview }) {
@@ -55,7 +55,7 @@ export default function Machines({ allMachines: {edges}, preview }) {
         {search(machines).map(({ node }) => (
           <div key={node.id} className={styles.machine_item}>
             <div className={styles.machine_item_content}>
-              <h3>{node.title}</h3>
+              <h3><span className={styles.item_code}>GCC1</span> {node.title}</h3>
 
               <div className={styles.machine_meta}>
                 <table>
@@ -88,6 +88,8 @@ export default function Machines({ allMachines: {edges}, preview }) {
             <div className={styles.machine_cover}>
               <Image
                 src={node.photo.mediaItemUrl}
+                blurDataURL="LBGIcT~UtR9u0M9b%1$eMdxYNdEM"
+                placeholder="blur"
                 layout={"intrinsic"}
                 width={500}
                 height={300}

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import Footer from '../../components/Footer'
-import { getEvent, getSlugs } from '../../utils/wordpress';
+import { getEvent, getSlugs } from '../../utils/data';
 import styles from '../../styles/Event.module.css'
 
 export default function EventPage({ event }) {
@@ -11,19 +11,22 @@ export default function EventPage({ event }) {
     <div className={styles.full_event_container}>
       <div className={styles.full_event_cover}>
         <Image
-            src={featuredMedia['media_details'].sizes.large['source_url']}
+            src={featuredMedia['media_details'].sizes.full['source_url']}
+            blurDataURL="LBGIcT~UtR9u0M9b%1$eMdxYNdEM"
+            placeholder="blur"
             layout={"intrinsic"}
             width={500}
             height={300}
             alt={featuredMedia['cover']}
             quality='100'
             className={styles.full_event_cover_img}
+            
             // placeholder={"blur"}
         />
       </div>
       <div className={styles.full_event_content}>
         <div className={styles.full_event_date}>{event.acm_fields.eventDate.split('-')[2]}.{event.acm_fields.eventDate.split('-')[1]}</div>
-        <div className={styles.full_event_title}>{event.title.rendered}</div>
+        <div className={styles.full_event_title}>{event.acm_fields.rusTitle}</div>
         
         <div className={styles.full_event_meta}>
           <table>
@@ -34,7 +37,7 @@ export default function EventPage({ event }) {
             </tr>
             <tr>
               <td>Начало:</td>
-              <td>12:00</td>
+              <td>{event.acm_fields.eventTime ? event.acm_fields.eventTime : '-'}</td>
             </tr>
             <tr>
               <td>Продолжительность:</td>
@@ -44,7 +47,7 @@ export default function EventPage({ event }) {
           </table>
         </div>  
         
-        <div className={styles.full_event_text} dangerouslySetInnerHTML={{ __html: event.acm_fields.eventDescription }}></div>
+        <div className={styles.full_event_text} dangerouslySetInnerHTML={{ __html: event.acm_fields.description }}></div>
 
         <Link href="/">
             <a className={styles.arrow_btn}>

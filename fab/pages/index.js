@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import Footer from '../components/Footer'
 
-import { getEvents } from '../utils/wordpress'
+import { getEvents } from '../utils/data'
 import Event from '../components/Event'
 
 
@@ -22,7 +22,7 @@ export default function Home({ events }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div>
+      <div className={styles.event_container}>
         {jsxEvents}
       </div>
 

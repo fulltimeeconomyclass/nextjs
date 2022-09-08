@@ -14,11 +14,11 @@ export default function Layout({ children }) {
     function handleClick() {
         setMenuState(!menuState)
     }
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            router.push({pathname: '/tools/search', query: { tool: e.target.value} },  undefined, { shallow: false })
-        }
-    } 
+    // const handleKeyDown = (e) => {
+    //     if (e.key === 'Enter') {
+    //         router.push({pathname: '/tools/search', query: { tool: e.target.value} },  undefined, { shallow: false })
+    //     }
+    // } 
 
     useEffect(() => {
         if (menuState) {
@@ -49,9 +49,11 @@ export default function Layout({ children }) {
     return (
         <div className="app-body">
             <aside className="app-sidebar">
-                <div className="app-logo sticky-top">
+                <div className="">
                     <Link href="/">
-                        <Image src="/fabrika.svg" alt="Fabrika Logo" width={'100vw'} height={'100vh'} />
+                        <a className="app-logo">
+                            <Image src="/fabrika.svg" alt="Fabrika Logo" width={'100vw'} height={'100vh'} />
+                        </a>
                     </Link>
                 </div>
                 <Nav />
@@ -62,19 +64,19 @@ export default function Layout({ children }) {
             </aside>
             
             <main className='app-main'>
-            <div className="mobile-header">
-                <div className="mobile-logo"><Link href="/"><Image src="/fabrika.svg" alt="Fabrika Logo" width={360} height={70} /></Link></div>
-                <div className="mobile-nav" onClick={handleClick}>
-                        <div>меню</div>
-                        <a className="">
-                            {menuState
-                                ? <Image src="/arrow-lg.svg" width={50} height={10} alt={"arrow"} />
-                                : <Image src="/arrow-back-lg.svg" width={50} height={10} alt={"arrow"} />
-                            }
-                        </a>
+                <div className="mobile-header">
+                    <div><Link href="/"><a className="mobile-logo"><Image src="/fabrika.svg" alt="Fabrika Logo" width={360} height={70} /></a></Link></div>
+                    <div className="mobile-nav" onClick={handleClick}>
+                            <div>меню</div>
+                            <a className="">
+                                {menuState
+                                    ? <Image src="/arrow-lg.svg" width={50} height={10} alt={"arrow"} />
+                                    : <Image src="/arrow-back-lg.svg" width={50} height={10} alt={"arrow"} />
+                                }
+                            </a>
+                    </div>
+                    <MobileNav />
                 </div>
-                <MobileNav />
-            </div>
                 {children}
             </main>
         </div>

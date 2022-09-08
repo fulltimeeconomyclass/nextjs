@@ -5,40 +5,39 @@ export default function MobileNav() {
     return(
         <div id="arrow-nav" className="mobile-sidenav">
             <ul>
-                <li className="nav-item">
-                    <Link href="/machines/machines">
+                
+                <Link href="/machines/machines">
+                    <li className="nav-item">
                         <a className="nav-link">Машины</a>
-                    </Link>
-                </li>
-                <li className="nav-item">
-                    <Link href="/about">
+                    </li>
+                </Link>        
+                <Link href="/about">
+                    <li className="nav-item">
                         <a className="nav-link">О Фабрике</a>
-                    </Link>
-                </li>
-                <li className="nav-item">
-                    <Link href="/map/map">
+                    </li>
+                </Link>
+                <Link href="/map/map">
+                    <li className="nav-item">
                         <a className="nav-link">Карта</a>
-                    </Link>
-                </li>
-                <li className="nav-item">
-                    <Link href="/contact">
+                    </li>
+                </Link>
+                <Link href="/contact">
+                    <li className="nav-item">
                         <a className="nav-link">Контакты</a>
-                    </Link>
-                </li>
-                <li className="nav-item">
-                    <Link href="/docs">
-                        <a className="nav-link">Документы</a>
-                    </Link>
-                </li>
-                <li className="nav-item">
-                    <Link href="/team/humans">
+                    </li>
+                </Link>
+                <Link href="/team/humans">
+                    <li className="nav-item">
                         <a className="nav-link">Команда</a>
-                    </Link>
-                </li>
+                    </li>
+                </Link>
+                <Link href="/tools-search">
+                    <li className="nav-item">
+                        <a className="nav-link">Поиск</a>
+                    </li>
+                </Link>
                 <li className="nav-item">
-                    <Link href="/tools-search">
-                        <a className="nav-link">Поиск инструмента</a>
-                    </Link>
+                    <a className="nav-link" href="https://fabacademy.org/about/program.html" target="blank">Документы</a>
                 </li>
             </ul>
         </div>

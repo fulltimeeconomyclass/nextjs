@@ -5,14 +5,14 @@ export default function Contact() {
   return (
     <div>
         <Head>
-            <title>Контакты - Фихтех.Фабрика</title>
+            <title>контакты - фихтех.фабрика</title>
             <meta name="description" content="Физтех.Фабрика" />
             <link rel="icon" href="/favicon.ico" />
         </Head>
         
         <div className={styles.faq_container}>
           <div className={styles.faq_intro}>
-            <div className={styles.contacts_title}>Физтех.Фабрика</div>
+            <div className={styles.contacts_title}>физтех.фабрика</div>
             <div className={styles.machine_meta}>
               <table>
                 <tbody>

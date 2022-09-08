@@ -1,7 +1,5 @@
-import Link from 'next/link';
 import Head from 'next/head'
-import Image from 'next/image';
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { getAllAddresses } from '../../utils/wordpress'
 import styles from '../../styles/Machine.module.css'
 
@@ -10,7 +8,7 @@ import SvgMap from './svgMap'
 export default function Addresses({ allAddresses: {edges}, preview }) {
   const addresses = edges;
   const [filter, setFilter] = useState("1");
-  const filter_items = ['1', '2', '3'];
+  const filter_items = ['1', '2', '3', '4'];
 
   const [floor, setFloor] = useState("1");
 
@@ -62,7 +60,7 @@ export default function Addresses({ allAddresses: {edges}, preview }) {
                 <div className={styles.machine_item_content}>
                     <h3>{node.name}</h3>
 
-                    <div className={styles.machine_meta}>
+                    {/* <div className={styles.machine_meta}>
                         <table>
                         <tbody>
                         <tr>
@@ -71,18 +69,18 @@ export default function Addresses({ allAddresses: {edges}, preview }) {
                         </tr>
                         </tbody>
                         </table>
-                    </div>  
+                    </div>   */}
                     <p>Machines in this zone:</p>
-                    <ul>
+                    <ul className={styles.map_machines_list}>
                         {node.machines.edges 
-                          ? node.machines.edges.map(({ node }) => (<li key={node.id}>{node.title} [{String(node.id).slice(-5, -2)}]</li>))
+                          ? node.machines.edges.map(({ node }) => (<li key={node.id}><span className={styles.item_code}>GCC1</span> {node.title} </li>))
                           : "None"
                         }
                     </ul>
-                    <p>Humans in this zone:</p>
-                    <ul>
+                    <p className={styles.humans_list_title}>Humans in this zone:</p>
+                    <ul className={styles.map_machines_list}>
                         {node.humans.edges 
-                          ? node.humans.edges.map(({ node }) => (<li key={node.id}>{node.name}</li>))
+                          ? node.humans.edges.map(({ node }) => (<li key={node.id}><span className={styles.item_code_position}>{node.position}</span>{node.name}</li>))
                           : "None"
                         }
                     </ul>

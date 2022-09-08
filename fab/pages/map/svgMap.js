@@ -1,6 +1,7 @@
 import Floor1 from './Floor1'
 import Floor2 from './Floor2'
 import Floor3 from './Floor3'
+import Floor4 from './Floor4'
 
 import styles from '../../styles/Machine.module.css'
 
@@ -15,6 +16,8 @@ export default function SvgMap({floor, fill, stroke}) {
                         return <Floor2/>
                     case "3":
                         return <Floor3/>
+                    case "4":
+                        return <Floor4/>
                     default:
                         return <Floor1/>
                 }

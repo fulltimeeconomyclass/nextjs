@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { getAllFaqs } from '../utils/wordpress'
+import { getAllFaqs } from '../utils/data'
 import styles from '../styles/Machine.module.css'
 import AccordionItem from  '../components/AccordionItem'
 

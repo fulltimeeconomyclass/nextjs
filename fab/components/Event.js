@@ -1,7 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-//to use Image with an external url, add some config on next.config.js
-//for more info, check out these docs https://nextjs.org/docs/basic-features/image-optimization
 import styles from '../styles/Event.module.css'
 
 
@@ -26,7 +24,7 @@ export default function Event({ event, featuredMedia }) {
           </Link>
         </div>
         <div className={styles.event_title}>
-          <div>{event.title.rendered}</div>
+          <div>{event.acm_fields.rusTitle}</div>
         </div>
     </div>
   );

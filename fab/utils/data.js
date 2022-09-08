@@ -192,6 +192,7 @@ export async function getAllAddresses(preview) {
               node {
                 id
                 name
+                position
               }
             }
           }

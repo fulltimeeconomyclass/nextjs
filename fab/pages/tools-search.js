@@ -3,8 +3,9 @@ import useDebounce from "../utils/useDebounce"
 import searchTools from "../utils/searchTools"
 import ToolsSearchResult from "../components/ToolsSearchResult";
 import { useState, useEffect } from 'react'
-import { getAllTools } from '../utils/wordpress'
+import { getAllTools } from '../utils/data'
 import Image from 'next/image'
+import Head from 'next/head'
 
 export default function ToolsSearch({ allTools: {edges}, preview }) {
   const [searchValue, setSearchValue] = useState("")
@@ -38,6 +39,12 @@ export default function ToolsSearch({ allTools: {edges}, preview }) {
   
   return (
     <div className="">
+      <Head>
+        <title>Поиск инструментов - Фихтех.Фабрика</title>
+        <meta name="description" content="Физтех.Фабрика" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      
       <div className="app-searchbar">
         <Image src="/search-icon.svg" alt="Fabrika Logo" width={18} height={18} />
         <input
