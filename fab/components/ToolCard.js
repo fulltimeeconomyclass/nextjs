@@ -11,7 +11,14 @@ const ToolCard = ({
     return (
       <div className="">
         <h2>{name}</h2>
-        <Image src={image} alt={name} width={"100px"} height={"100px"}/>
+        <Image 
+          src={image} 
+          alt={name} 
+          width={"100px"} 
+          height={"100px"} 
+          blurDataURL="../../blur.png"
+          placeholder="blur"
+        />
         <div className="">
           <div className="">{quantity}</div>
         </div>

@@ -36,6 +36,8 @@ const ToolsSearchResult = ({ tools }) => {
             </Link> */}
             <Image
               src={tool.photo.mediaItemUrl}
+              blurDataURL="../../blur.png"
+              placeholder="blur"
               layout={"intrinsic"}
               width={200}
               height={200}

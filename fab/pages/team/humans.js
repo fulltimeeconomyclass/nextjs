@@ -78,6 +78,8 @@ export default function Humans({ allHumans: {edges}, preview }) {
             <div className={styles.machine_cover}>
               <Image
                 src={node.photo.mediaItemUrl}
+                blurDataURL="../../blur.png"
+                placeholder="blur"
                 layout={"intrinsic"}
                 width={300}
                 height={300}

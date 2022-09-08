@@ -88,7 +88,7 @@ export default function Machines({ allMachines: {edges}, preview }) {
             <div className={styles.machine_cover}>
               <Image
                 src={node.photo.mediaItemUrl}
-                blurDataURL="LBGIcT~UtR9u0M9b%1$eMdxYNdEM"
+                blurDataURL="../../blur.png"
                 placeholder="blur"
                 layout={"intrinsic"}
                 width={500}

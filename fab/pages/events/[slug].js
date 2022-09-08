@@ -12,7 +12,7 @@ export default function EventPage({ event }) {
       <div className={styles.full_event_cover}>
         <Image
             src={featuredMedia['media_details'].sizes.full['source_url']}
-            blurDataURL="LBGIcT~UtR9u0M9b%1$eMdxYNdEM"
+            blurDataURL="../../blur.png"
             placeholder="blur"
             layout={"intrinsic"}
             width={500}
