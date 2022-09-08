@@ -24,7 +24,7 @@ export default function Layout({ children }) {
         if (menuState) {
             document.querySelector("#arrow-nav").style.width = "100%";
             document.querySelector(".app-main").style.overflowY = "hidden";
-            document.querySelector("#arrow-nav").style.height = `${window.innerHeight - document.querySelector(".mobile-header").offsetHeight - 2}px`;
+            document.querySelector("#arrow-nav").style.height = `${window.innerHeight - document.querySelector(".mobile-header").offsetHeight - 2 + document.querySelector(".app-main").scrollTop}px`;
         }
         else {
             document.querySelector("#arrow-nav").style.width = "0";
