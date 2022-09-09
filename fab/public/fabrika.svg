@@ -9,6 +9,9 @@ viewBox="0 0 4184 983"
    <![CDATA[
     .fil0 {fill:black}
     .fil1 {fill:#EA9242}
+    @media (prefers-color-scheme: dark) {
+    .fil0 {fill:white}
+    }
    ]]>
   </style>
  </defs>

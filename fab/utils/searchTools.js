@@ -1,6 +1,3 @@
-// import { ALL_TOOLS } from "../constants/allTools";
-
-
 export default function searchTools(tools, query) {
   function search(tools, keyword) {
     let some_tools = []
@@ -18,7 +15,7 @@ export default function searchTools(tools, query) {
       // const matchingTools = ALL_TOOLS.filter(({ name }) =>
       //     name.includes(query.toLowerCase())
       // ).map(({ name }) => name);
-      const matchingTools = search(tools, query)     
+      const matchingTools = search(tools, query.toLowerCase())     
       resolve(matchingTools);
   });
 }

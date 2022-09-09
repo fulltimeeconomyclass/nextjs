@@ -40,7 +40,7 @@ export default function EventPage({ event }) {
               <td>{event.acm_fields.eventTime ? event.acm_fields.eventTime : '-'}</td>
             </tr>
             <tr>
-              <td>Продолжительность:</td>
+              <td>Прод-ть:</td>
               <td>40 мин</td>
             </tr>
             </tbody>

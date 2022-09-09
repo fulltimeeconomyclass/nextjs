@@ -18,7 +18,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(173, 172, 172);
+  background: rgb(255, 255, 255);
 }
 
 /* Handle on hover */
@@ -301,5 +301,40 @@ a {
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
   .app-body {
     grid-template-columns: 20rem 1fr;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .app-sidebar {
+    border-right: 1px solid white;
+  }
+
+  .app-sidebar ul li:hover {
+    color: #e6e3e3;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: black;
+  }
+
+  .mobile-nav {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+  }
+  .mobile-sidenav {
+    background-color: black;
+  }
+  .mobile-sidenav ul li {
+    border-bottom: 1px solid white;
+    font-weight: 600;
+  }
+
+  .app-searchbar { 
+    background-color: #000000;
+    border-bottom: 1px solid rgb(255, 255, 255);
+  }
+
+  .app-searchbar input {
+    background-color: #000000;
   }
 }

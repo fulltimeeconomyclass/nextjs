@@ -67,7 +67,7 @@ export default function Machines({ allMachines: {edges}, preview }) {
                   <tr>
                     <td>тип:</td>
                     <td>
-                      <ul>
+                      <ul className={styles.machine_type_list}>
                       {node.machineType.edges
                         ? node.machineType.edges.map(({ node }) => (<li key={node.id}>{node.title}</li>))
                         : "None"
