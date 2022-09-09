@@ -247,6 +247,10 @@
         flex-direction: row; */
         flex-wrap: wrap;
     }
+
+    .faq_question {
+        padding: 0rem 1rem;
+    }
 }
 
 @media (prefers-color-scheme: dark) {

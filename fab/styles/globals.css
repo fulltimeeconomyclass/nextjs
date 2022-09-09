@@ -336,5 +336,10 @@ a {
 
   .app-searchbar input {
     background-color: #000000;
+    color: white;
+  }
+
+  .app-searchbar input:focus {
+    color: white
   }
 }
