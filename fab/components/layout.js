@@ -18,11 +18,12 @@ export default function Layout({ children }) {
     //     if (e.key === 'Enter') {
     //         router.push({pathname: '/tools/search', query: { tool: e.target.value} },  undefined, { shallow: false })
     //     }
-    // } 
+    // } overflow: hidden
 
     useEffect(() => {
         if (menuState) {
             document.querySelector("#arrow-nav").style.width = "100%";
+            document.querySelector(".app-main").style.overflow = "hidden";
             document.querySelector(".app-main").style.overflowY = "hidden";
             document.querySelector("#arrow-nav").style.height = `${window.innerHeight - document.querySelector(".mobile-header").offsetHeight - 2 + document.querySelector(".app-main").scrollTop}px`;
         }
